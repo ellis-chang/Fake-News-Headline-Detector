@@ -3,18 +3,16 @@
 # @Author: mark atkisson
 # @Date:   2021-05-04T18:30:19-07:00
 # @Last modified by:   mark
-# @Last modified time: 2021-05-07T20:59:49-07:00
+# @Last modified time: 2021-05-27T19:34:13-07:00
 
-#import numpy as np
 import pandas as pd
 import pickle
 import itertools
-import sklearn
 from sklearn.model_selection import train_test_split    # Split data
 from sklearn.feature_extraction.text import TfidfVectorizer     #TF IDF model
-from sklearn.linear_model import PassiveAggressiveClassifier    #PA classifier
 from sklearn.pipeline import Pipeline   #Bundles the above two into one unit
 from sklearn.metrics import confusion_matrix
+from sklearn.linear_model import LogisticRegression
 
 
 def process_data(datapath: str):
@@ -56,7 +54,7 @@ def train_model(X_train: pd.core.series.Series, y_train: pd.core.series.Series):
     """
     # TfidfVectorizer
     model = TfidfVectorizer()
-    classify = PassiveAggressiveClassifier()
+    classify = LogisticRegression()
     pipe = Pipeline([('tfidf', model), ('pac', classify)])
 
     # Train model
@@ -102,7 +100,7 @@ def predict_new(pipe: Pipeline, newHeadline: str):
         The model's prediction
 
     """
-    return pipe.predict([newHeadline])
+    return pipe.predict_proba([newHeadline])
 
 
 
@@ -123,19 +121,19 @@ def load_pipe(datapath: str):
 
 if __name__ == '__main__':
     # Process data
-    X_train, X_test, y_train, y_test = process_data('news_limited.csv')
+    X_train, X_test, y_train, y_test = process_data('news.csv')
 
     # Train/retrain model
-    #tfidf_pipeline = train_model(X_train, y_train)
+    #log_pipeline = train_model(X_train, y_train)
 
     # Load existing model
-    tfidf_pipeline = load_pipe("model.pkl")
+    log_pipeline = load_pipe("model.pkl")
 
     # Get accuracy and confusion
-    score, confusion = test_model(tfidf_pipeline, X_test, y_test)
-    #print(f"Accuracy: {(round(score*100,2))}%")
-    #print(confusion)
+    score, confusion = test_model(log_pipeline, X_test, y_test)
+    print(f"Accuracy: {(round(score*100,2))}%")
+    print(confusion)
 
-    # Predict a new headline
-    #prediction = predict_new(tfidf_pipeline, "Hubert sucks eggs!")
-    #print(prediction)
+    # Predict a new headline with confidence
+    prediction = predict_new(log_pipeline, "Test")
+    print(prediction)
