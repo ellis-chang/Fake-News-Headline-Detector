@@ -1,16 +1,22 @@
 # # CSE 190 Final Project
-### CSE 190 Spring 2021
+### CSE 190 Human-AI Interaction - Spring 2021
+
 #### Members:
 * Mark Atkisson
 * Justyn Radovan
 * Albert Estevan
 * Ellis Chang
 
+- - - -
 ## About
-Predicts whether a news headline is fake or real using TFIDF.
+Predicts whether a news headline is fake or real using TFIDF and logistic regression.
+
+- - - -
 
 ## Installation
 Open two terminal windows, one for the front-end and one for the back-end.
+
+- - - -
 
 ### Backend
 While not required, we highly recommend creating a virtual environment using the virtualenv package.
@@ -41,6 +47,8 @@ followed by
 `flask run`
 
 to start the backend.
+
+- - - -
 
 ### Frontend
 Simply run
