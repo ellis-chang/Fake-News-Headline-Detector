@@ -18,7 +18,7 @@ export default function App() {
   const [result, setResult] = useState("");
   const [history, setHistory] = useState([]); 
   //hardcoded confidence
-  const [confidence, setConfidence] = useState(0.7);
+  const [confidence, setConfidence] = useState(0);
 
   const handlePredictClick = (event) => {
     setIsLoading(true)
@@ -27,8 +27,16 @@ export default function App() {
         console.log(res.data)
         setResult(res.data.result)
         console.log(result)
+        if (res.data.result) {
+          setConfidence(res.data.proba[1])
+          setHistory([{name: headline, result: res.data.result, confidence: parseFloat(res.data.proba[1]*100).toFixed(2)}, ...history ])
+        }
+        else {
+          setConfidence(res.data.proba[0])
+          setHistory([{name: headline, result: res.data.result, confidence: parseFloat(res.data.proba[0]*100).toFixed(2)}, ...history ])
+        }
         setIsLoading(false)
-        setHistory([...history, {name: headline, result: res.data.result} ])
+        
         console.log(history)
 
     })
@@ -66,7 +74,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1 style={{color: '#ffffff'}}>Fake/real news classifier</h1>
+      <h1 style={{color: '#ffffff'}}>FAKE OR REAL NEWS</h1>
       <div className="form-container">
         <Form>
           <Form.Row>
@@ -114,9 +122,6 @@ export default function App() {
               </Row>)
             }
         </div>
-        {/* <div>
-        {`Condifence percentage: ${confidence*100}%`}
-        </div> */}
         {result === "" ?
         null
         :
@@ -126,7 +131,7 @@ export default function App() {
               <PieChart data={pieData}/>
             </div>
           </div>
-          {`Condifence percentage: ${confidence*100}%`}
+          {`Condifence/probability percentage: ${parseFloat(confidence*100).toFixed(2)}%`}
         </div>)
         }
       </div>
