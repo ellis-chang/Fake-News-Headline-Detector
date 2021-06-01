@@ -21,6 +21,7 @@ const DenseTable = ({history}) => {
             <TableRow>
                 <TableCell>News</TableCell>
                 <TableCell align="right">Result</TableCell>
+                <TableCell align="right">Confidence</TableCell>
             </TableRow>
             </TableHead>
             <TableBody>
@@ -29,7 +30,8 @@ const DenseTable = ({history}) => {
                 <TableCell component="th" scope="row">
                     {row.name}
                 </TableCell>
-                <TableCell align="right">{row.result ? "Real" : "Fake"}</TableCell>  
+                <TableCell align="right">{row.result ? "REAL" : "FAKE"}</TableCell>  
+                <TableCell align="right">{row.confidence}%</TableCell>  
                 </TableRow>
             ))}
             </TableBody>

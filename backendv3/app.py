@@ -23,7 +23,11 @@ def predict():
         data = [ formData['headline'] ]
         print("data", data)
         prediction = classifier.predict(data)
+        proba = classifier.predict_proba(data)
+        proba = proba.tolist()
         print("prediction", prediction)
+        print("probabilities: ", classifier.predict_proba(data))
+
         if len(prediction) == 0:
              return jsonify({
                 "statusCode": 500,
@@ -34,7 +38,8 @@ def predict():
         response = jsonify({
             "statusCode": 200,
             "status": "Prediction made",
-            "result": bool(prediction[0])
+            "result": bool(prediction[0]),
+            "proba": proba[0]
         })
         return response
     except Exception as error:
