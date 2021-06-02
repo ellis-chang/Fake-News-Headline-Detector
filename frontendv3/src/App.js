@@ -71,10 +71,49 @@ export default function App() {
       ],
   };
 
+  const displayAbout = () => {
+    document.getElementById('aboutPage').style.display = 'block';
+    document.getElementById('backgroundOverlay').style.display = 'block';
+  }
+
+  const closeAbout = () => {
+    document.getElementById('aboutPage').style.display = 'none';
+    document.getElementById('backgroundOverlay').style.display = 'none';
+  }
 
   return (
     <div className="App">
+      <header>
+        <Button
+          id="aboutButton"
+          block
+          onClick={() => displayAbout()}>ABOUT
+        </Button>
+      </header>
+      <div id="aboutPage">
+        <Button 
+          id="closeAbout"
+          onClick={() => closeAbout()}>X
+        </Button>
+        <h1 id="aboutTitle">About</h1>
+        <p id="aboutText">
+          The purpose of this classifier is to help users detect whether or not the headline of the article they are reading is part of 
+          a legitimate news source or an untrusted news source. Recently, misinformation in the news has became a major problem and when 
+          a survey was conducted, in 2019 from statista, asking people about major problems in the US, 65% of people believe that 
+          misinformation in the news as a major problem and 63% of people believe that disinformation in the news is a major problem.
+        </p>
+        <h3 id="howToUseTitle">How to Use:</h3>
+        <p id="howToUseText">
+          In order to use the classifer, first you input the headline of the article you are reading or want to know if it is real or fake 
+          into the input box. Afterwards, you click on the predict button to have our model predict whether or not it is real or fake. You 
+          can also cancel or reset the prediction by clicking the reset prediction button. Afterwards, you will get the result and some 
+          recommendations and more information about why our model predicted what it did.
+        </p>
+      </div>
       <h1 style={{color: '#ffffff'}}>FAKE OR REAL NEWS</h1>
+      <h5 id="functionality" style={{color: '#ffffff'}}>
+        This is a fake or real news predictor. It determines whether or not the headline of an article/news you input is fake or real.
+      </h5>
       <div className="form-container">
         <Form>
           <Form.Row>
@@ -135,6 +174,10 @@ export default function App() {
         </div>)
         }
       </div>
+      <p id="disclaimer" style={{color: '#ffffff'}}>
+        Disclaimer: This is just a prediction and should not be taken as a legitimate statement. Please do your own research to
+        see if the actual article or headline is a legitimate source or an untrusted source.
+      </p>
       {result === false ? (<div className="form-container">
         <FolderList />
       </div>)
@@ -144,6 +187,7 @@ export default function App() {
       <div className="form-container">
         <Table history={history}/>
       </div>
+      <div id="backgroundOverlay"></div>
     </div>
 
   );
