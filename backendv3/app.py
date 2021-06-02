@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify, make_response
 import pickle
 from flask_cors import CORS, cross_origin
+import sklearn
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -11,7 +12,7 @@ classifier = pickle.load(open("model.pkl", "rb"))
 @app.route("/predict",  methods=['POST'])
 @cross_origin(origin='localhost',headers=['Content-Type'])
 def predict():
-    try: 
+    try:
         formData = request.json
         print("woiks", formData)
         if formData['headline'] == None:
