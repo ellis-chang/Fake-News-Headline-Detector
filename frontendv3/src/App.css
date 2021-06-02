@@ -6,6 +6,61 @@ html, body {
   width: 100%; */
 }
 
+#aboutButton {
+  font-size: 1.25vw;
+  background-color: gray;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  width: 6.5vw;
+  height: 2.5vw;
+  top: 1.5vw;
+  right: 1.5vw;
+}
+
+#closeAbout {
+  color: black;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  top: 0;
+  right: 0;
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 1vw;
+}
+
+#aboutPage {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  height: 60%;
+  width: 50vw;
+  padding: 5vw;
+  background-color: #D0D0D0;
+  border-radius: 1vw;
+  overflow-y: scroll;
+}
+
+#aboutTitle, #aboutText, #howToUseTitle, #howToUseText {
+  color: black;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+#functionality {
+  width: 75%;
+}
+
+#disclaimer {
+  font-size: smaller;
+  width: 50%;
+}
 
 .App {
   text-align: center;
@@ -28,4 +83,15 @@ html, body {
 
   border-radius: 8px;
   padding: 10px;
+}
+
+#backgroundOverlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  display: none;
 }

@@ -43,7 +43,7 @@ export default function FolderList() {
                     <img width="50" height="50" src={news['icon-url']}/>
                 </div>
                 <div style={{width: '70%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-                    <a href={news.link} target = "_blank"  style={{ color: 'black'}}>{news.title}</a>
+                    <a href={news.link} target = "_blank"  style={{ }}>{news.title}</a>
                 </div>
             </div>
       </ListItem>
