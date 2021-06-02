@@ -110,7 +110,7 @@ export default function App() {
           recommendations and more information about why our model predicted what it did.
         </p>
       </div>
-      <h1 style={{color: '#ffffff'}}>FAKE OR REAL NEWS</h1>
+      <h1 style={{color: '#ffffff'}}>NewsDetective</h1>
       <h5 id="functionality" style={{color: '#ffffff'}}>
         This is a fake or real news predictor. It determines whether or not the headline of an article/news you input is fake or real.
       </h5>
