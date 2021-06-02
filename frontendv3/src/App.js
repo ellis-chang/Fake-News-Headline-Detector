@@ -153,9 +153,15 @@ export default function App() {
               (<Row>
                 <Col className="result-container">
                   {result ? 
+                  <>
                   <h5 id="result">{`Great! We think that the news is REAL`}</h5>
+                  <p style={{fontSize: 'smaller'}}>{`The headline contains common key words contained in real news`}</p>
+                  </>
                   :
+                  <>
                   <h5 id="result">{`We think that the news is FAKE`}</h5>
+                  <p style={{fontSize: 'smaller'}}>{`The headline contains common key words contained in fake news`}</p>
+                  </>
                   }
                 </Col>
               </Row>)
@@ -170,7 +176,7 @@ export default function App() {
               <PieChart data={pieData}/>
             </div>
           </div>
-          {`Condifence/probability percentage: ${parseFloat(confidence*100).toFixed(2)}%`}
+          {`Confidence percentage: ${parseFloat(confidence*100).toFixed(2)}%`}
         </div>)
         }
       </div>
